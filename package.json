@@ -1,0 +1,26 @@
+{
+  "name": "neuroauth",
+  "version": "1.0.0",
+  "description": "seed phrase generation",
+  "keywords": [
+    "seed"
+  ],
+  "homepage": "https://github.com/Sheikhharis50/neruoauth#readme",
+  "bugs": {
+    "url": "https://github.com/Sheikhharis50/neruoauth/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sheikhharis50/neruoauth.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "author": "Sheikh Haris Zahid",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
