@@ -1,6 +1,9 @@
 // src/utils/cryptoOperations.js
-import Words from '../data/Seeds'
+import Words from './data/Seeds'
 import * as openpgp from 'openpgp';
+import { register } from './api/register';
+import { login } from './api/login';
+
 
 
 // 1. Generate Secure Seed Phrase
@@ -274,7 +277,7 @@ export async function encryptAnyData(data) {
         }
 
         const parsedCryptoData = JSON.parse(cryptoData);
-        const publicKeyToUse = parsedCryptoData.publicKey; 
+        const publicKeyToUse = parsedCryptoData.publicKey;
 
         if (!data) {
             throw new Error("No data provided for encryption.");
@@ -347,8 +350,29 @@ export async function decryptAnyData(encryptedDataArmored) {
     }
 }
 
+export async function signUp(seedPhrase) {
+    const result = await performSignup(seedPhrase);
+
+    return register(
+        result.loginHash,
+        result.publicKey,
+        result.encryptedPrivateKey,
+        result.encryptedPrivateKeyIV,
+        result.encryptedPrivateKeyTag,
+        result.encSalt
+    );
+}
+
+export async function signIn(seedPhrase) {
+    const { loginHash } = await deriveSeedsHash(seedPhrase);
+    const loginResponse = await login(loginHash);
+    return handleSuccessfulLogin(loginResponse, seedPhrase);
+}
+
 export default {
     generateSeedPhrase,
     performSignup,
     deriveSeedsHash,
+    signUp,
+    signIn,
 };
