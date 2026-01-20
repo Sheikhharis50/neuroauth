@@ -1,0 +1,1 @@
+export const IDENTITY_SERVER_URL = "https://api.prod.auth.neuronus.net/api";

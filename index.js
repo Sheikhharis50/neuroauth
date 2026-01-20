@@ -5,7 +5,6 @@ import { register } from './api/register';
 import { login } from './api/login';
 
 
-
 // 1. Generate Secure Seed Phrase
 export async function generateSeedPhrase() {
     const entropy = crypto.getRandomValues(new Uint8Array(16));
@@ -353,19 +352,19 @@ export async function decryptAnyData(encryptedDataArmored) {
 export async function signUp(seedPhrase) {
     const result = await performSignup(seedPhrase);
 
-    return register(
-        result.loginHash,
-        result.publicKey,
-        result.encryptedPrivateKey,
-        result.encryptedPrivateKeyIV,
-        result.encryptedPrivateKeyTag,
-        result.encSalt
-    );
+    return register({
+        loginHash: result.loginHash,
+        publicKey: result.publicKey,
+        encryptedPrivateKey: result.encryptedPrivateKey,
+        encryptedPrivateKeyIV: result.encryptedPrivateKeyIV,
+        encryptedPrivateKeyTag: result.encryptedPrivateKeyTag,
+        encSalt: result.encSalt
+    });
 }
 
 export async function signIn(seedPhrase) {
     const { loginHash } = await deriveSeedsHash(seedPhrase);
-    const loginResponse = await login(loginHash);
+    const loginResponse = await login({ passPhrase: loginHash });
     return handleSuccessfulLogin(loginResponse, seedPhrase);
 }
 

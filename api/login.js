@@ -1,11 +1,15 @@
-export const login = async (pass_phrase) => {
+import { IDENTITY_SERVER_URL } from "../config/constants";
+
+export const login = async ({
+    passPhrase
+}) => {
     try {
-        const res = await fetch("https://api.prod.auth.neuronus.net/api/auth/login/", {
+        const res = await fetch(`${IDENTITY_SERVER_URL}/auth/login/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ pass_phrase: pass_phrase })
+            body: JSON.stringify({ pass_phrase: passPhrase })
         });
 
         if (!res.ok) {
