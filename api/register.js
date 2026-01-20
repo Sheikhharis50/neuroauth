@@ -1,4 +1,4 @@
-import { IDENTITY_SERVER_URL } from "../config/constants";
+import { IDENTITY_SERVER_URL } from "../config/constants.js";
 
 export const register = async ({
     loginHash,

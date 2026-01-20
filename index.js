@@ -1,8 +1,8 @@
 // src/utils/cryptoOperations.js
-import Words from './data/Seeds'
+import Words from './data/Seeds.js'
 import * as openpgp from 'openpgp';
-import { register } from './api/register';
-import { login } from './api/login';
+import { register } from './api/register.js';
+import { login } from './api/login.js';
 
 
 // 1. Generate Secure Seed Phrase
